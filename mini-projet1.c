@@ -13,8 +13,8 @@ int n1= 100;
 
 int main(int argc, char const *argv[])
 {
-    char Titre_Livre[n1][30];
-    char Auteur_Livre[n1][30];
+    char Titre_Livre[n1][n2];
+    char Auteur_Livre[n1][n2];
     float Prix[n1];
     int Quantite[n1];
     int a ,n , c;
