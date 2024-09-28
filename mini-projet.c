@@ -2,21 +2,20 @@
 #include<string.h>
 #include<stdbool.h>
 #define n2 30
-void Ajouter(char A[][n2] ,char B[][n2] ,float C[1] ,int D[]);
-void Affichage(char A[][n2] ,char B[][n2] ,float C[1] ,int D[]);
-void Rechercher(char A[][n2] ,char B[][n2] ,float C[1] ,int D[]);
-int Mette_a_jour(char A[][n2]);
-void Supprimer_Livre(char A[][n2] ,char B[][n2] ,float C[1] ,int D[]);
-int Quantite_Total(int A[]);
+void Ajouter();
+void Affichage();
+void Rechercher();
+int Mette_a_jour();
+void Supprimer_Livre();
+int Quantite_Total();
 int i =0;
-int n1= 100;
-
+int n1 ;
+char Titre_Livre[n1][30];
+char Auteur_Livre[n1][30];
+float Prix[n1];
+int Quantite[n1];
 int main(int argc, char const *argv[])
 {
-    char Titre_Livre[n1][30];
-    char Auteur_Livre[n1][30];
-    float Prix[n1];
-    int Quantite[n1];
     int a ,n , c;
     do
     {
@@ -62,20 +61,20 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
-void Ajouter(char A[][n2] ,char B[][n2] ,float C[1] ,int D[])
+void Ajouter()
 {
     
     printf("Entrer le titre du livre : ");
-    fgets(A[i],n2,stdin);                    // scanf("%s",A[i]);
+    fgets(Titre_Livre[i],n2,stdin);                    // scanf("%s",A[i]);
     printf("Donner le nom de l'auteur : ");
-    fgets(B[i],n2,stdin);                    // scanf("%s",B[i]);
+    fgets(Auteur_Livre[i],n2,stdin);                    // scanf("%s",B[i]);
     printf("Entrer le prix : ");
-    scanf("%f",&C[i]);
+    scanf("%f",&Prix[i]);
     printf("La Quantite a ajouter : ");
-    scanf("%d",&D[i]);
+    scanf("%d",&Quantite[i]);
     n1++;
 }
-void Affichage(char A[][n2] ,char B[][n2] ,float C[1] ,int D[])
+void Affichage()
 {
     int j;
     if (i == 0)
@@ -87,10 +86,10 @@ void Affichage(char A[][n2] ,char B[][n2] ,float C[1] ,int D[])
         for ( j = 0; j < i; j++)
         {
             printf("Livre %d :\t",j);
-            printf("%s.\t",A[j]);
-            printf("%s.\t",B[j]);
-            printf("Prix:%f.\t",&C[i]);
-            printf("Qantite:%d.\n\n",&D[j]);
+            printf("%s.\t",Titre_Livre[j]);
+            printf("%s.\t",Auteur_Livre[j]);
+            printf("Prix:%f.\t",&Prix[i]);
+            printf("Qantite:%d.\n\n",&Quantite[j]);
         }
     }
 }
@@ -103,14 +102,14 @@ void Rechercher(char A[][n2] ,char B[][n2] ,float C[1] ,int D[])
     for ( j = 0; j < i; j++)
     {
         a = 0;
-        if (strcmp(A[j],nom[n2]))
+        if (strcmp(Titre_Livre[j], nom[n2]))
         {
             printf("Le livre existe dans la Librairie . Ses informations est : \n");
             printf("Livre %d :\t",j);
-            printf("%s.\n",&A[i]);
-            printf("%s.\n",&B[i]);
+            printf("%s.\n",&Titre_Livre[i]);
+            printf("%s.\n",&Auteur_Livre[i]);
             printf("Prix:%f.\n",&C[i]);
-            printf("Qantite:%d.\n",&D[i]); 
+            printf("Qantite:%d.\n",&Quantite[i]); 
             a = 1;       
         }
     }
@@ -127,7 +126,7 @@ int Mette_a_jour(char A[][n2])
     fgets(a,n2,stdin);
     for ( j = 0; j < i; j++)
     {
-        if (strcmp(A[j],a[n2]))
+        if (strcmp(Auteur_Livre[j],a[n2]))
         {
             return j;
             break;
@@ -142,17 +141,17 @@ void Supprimer_Livre(char A[][n2] ,char B[][n2] ,float C[1] ,int D[])
     fgets(a,n2,stdin);
     for ( j = 0; j < i; j++)
     {
-        if (strcmp(A[j],a[n2]))
+        if (strcmp(Auteur_Livre[j],a[n2]))
         {
             for ( o = j; o < i; o++)
             {
                 for ( l = 0; l < n2; l++)
                 {
                     A[o][l] = A[o+1][l];
-                    B[o][l] = A[o+1][l];
+                    Auteur_Livre[o][l] = Auteur_Livre[o+1][l];
                 }
                 C[o] = C[o+1];
-                D[o] = D[o+1];
+                Quantite[o] = Quantite[o+1];
             
             }
             break;
@@ -164,7 +163,7 @@ int Quantite_Total(int A[])
     int j , s = 0;
     for ( j = 0; j < i; j++)
     {
-        s += A[j];
+        s += Quantite[j];
     }
     return s;
 }
