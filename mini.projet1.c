@@ -38,7 +38,6 @@ int main()
         {
         case 1 :
             Ajouter();
-            i++;
             break;
         case 2 :
             Affichage();
@@ -80,6 +79,7 @@ void Ajouter()
     printf("La Quantite a ajouter : ");
     scanf("%d",&Quantite[i]);
     getchar();
+    i++;
 }
 void Affichage() {
     if (i == 0) {
