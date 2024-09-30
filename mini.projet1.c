@@ -56,7 +56,6 @@ int main()
             break;
         case 5 :
             Supprimer_Livre();
-            i--;
             break;
         case 6 :
             printf("le Nombre Total de Livres en Stock est S = %d\n",Quantite_Total(Quantite));
@@ -159,6 +158,7 @@ void Supprimer_Livre()
                 Quantite[o] = Quantite[o+1];
             
             }
+            i--;
             break;
         }
     }
